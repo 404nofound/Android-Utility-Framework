@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.eddy.androidutilityframework.Util.LogUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(MyApplication.getContext(), "Got Application Context", Toast.LENGTH_LONG).show();
 
+        LogUtil.d("TAG", "Log Util");
     }
 
     @Override
