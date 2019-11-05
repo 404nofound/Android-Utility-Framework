@@ -1,4 +1,4 @@
-package com.eddy.androidutilityframework.Util;
+package com.eddy.androidutilityframework.util;
 
 import android.util.Log;
 

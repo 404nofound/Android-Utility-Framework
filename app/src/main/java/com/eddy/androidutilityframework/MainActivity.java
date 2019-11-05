@@ -1,19 +1,25 @@
 package com.eddy.androidutilityframework;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.eddy.androidutilityframework.Util.LogUtil;
+import com.eddy.androidutilityframework.model.Book;
+import com.eddy.androidutilityframework.model.Person;
+import com.eddy.androidutilityframework.util.LogUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Button serializable, parceable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,37 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+
+        serializable = findViewById(R.id.serializable);
+        parceable = findViewById(R.id.parcelable);
+
+        serializable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Person person = new Person();
+                person.setName("Tom");
+                person.setAge(24);
+
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                intent.putExtra("data1", person);
+
+                startActivity(intent);
+            }
+        });
+
+        parceable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Book book = new Book();
+                book.setName("US History");
+                book.setAuthor("Tom Max");
+
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                intent.putExtra("data2", book);
+
+                startActivity(intent);
             }
         });
 
