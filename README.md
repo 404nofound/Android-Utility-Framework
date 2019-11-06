@@ -12,3 +12,8 @@ Debug / Release, change the **level** variable in **LogUtil.java** before releas
 ### Passing Object Value by Intent
 
 Implement Serializable / Parcelable. Recommend: Parcelable, becasue Serializable will serialize all object, so it has low producticity. Code in **model folder** and **activity files**.
+
+### OkHttp Usage - (Http Get/Post Request)
+
+Define a file: **HttpUtil.java**. Call functions when we need internet request, we can deal with success and failure condition.
+Tips: We need to add **Internet permission** in **AndroidManifest.xml**
