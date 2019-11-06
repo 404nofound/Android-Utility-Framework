@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,13 +14,21 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.eddy.androidutilityframework.model.Book;
 import com.eddy.androidutilityframework.model.Person;
+import com.eddy.androidutilityframework.util.HttpUtil;
 import com.eddy.androidutilityframework.util.LogUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button serializable, parceable;
+    private TextView httpView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         serializable = findViewById(R.id.serializable);
         parceable = findViewById(R.id.parcelable);
+        httpView = findViewById(R.id.http_text);
 
         serializable.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,23 +81,52 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MyApplication.getContext(), "Got Application Context", Toast.LENGTH_LONG).show();
 
         LogUtil.d("TAG", "Log Util");
+
+        requestAlert();
+    }
+
+    private void requestAlert() {
+
+        String url = "https://api-v3.mbta.com/alerts?filter[route_type]=0,1&sort=lifecycle";
+
+        HttpUtil.sendOkHttpGetRequest(url, new Callback() {
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException {
+
+                final String info = response.body().string().trim();
+
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        httpView.setText(info);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(MyApplication.getContext(), "Internet Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

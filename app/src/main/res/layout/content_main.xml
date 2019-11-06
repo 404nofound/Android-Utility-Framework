@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="Pass Object by Serializable"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/parcelable"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -24,6 +24,15 @@
         android:layout_height="wrap_content"
         android:text="Pass Object by Parcelable "
         app:layout_constraintTop_toBottomOf="@+id/serializable"
+        app:layout_constraintBottom_toTopOf="@+id/http_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/http_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/parcelable"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
