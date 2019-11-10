@@ -3,12 +3,11 @@ package com.eddy.androidutilityframework;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.eddy.androidutilityframework.base.BaseActivity;
 import com.eddy.androidutilityframework.model.Book;
 import com.eddy.androidutilityframework.model.Person;
 
-public class SecondActivity extends AppCompatActivity {
+public class SecondActivity extends BaseActivity {
 
     private TextView textView;
 

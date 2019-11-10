@@ -10,7 +10,7 @@
 
     <Button
         android:id="@+id/serializable"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Pass Object by Serializable"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,10 +20,20 @@
 
     <Button
         android:id="@+id/parcelable"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pass Object by Parcelable "
+        android:text="Pass Object by Parcelable"
         app:layout_constraintTop_toBottomOf="@+id/serializable"
+        app:layout_constraintBottom_toTopOf="@+id/finish"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Finish All Activities"
+        app:layout_constraintTop_toBottomOf="@+id/parcelable"
         app:layout_constraintBottom_toTopOf="@+id/http_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -32,7 +42,7 @@
         android:id="@+id/http_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/parcelable"
+        app:layout_constraintTop_toBottomOf="@+id/finish"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

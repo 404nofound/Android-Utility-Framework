@@ -9,9 +9,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.eddy.androidutilityframework.base.ActivityCollector;
+import com.eddy.androidutilityframework.base.BaseActivity;
 import com.eddy.androidutilityframework.model.Book;
 import com.eddy.androidutilityframework.model.Person;
 import com.eddy.androidutilityframework.util.HttpUtil;
@@ -25,9 +26,9 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
-    private Button serializable, parceable;
+    private Button serializable, parceable, finish;
     private TextView httpView;
 
     @Override
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         serializable = findViewById(R.id.serializable);
         parceable = findViewById(R.id.parcelable);
+        finish = findViewById(R.id.finish);
         httpView = findViewById(R.id.http_text);
 
         serializable.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +77,14 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("data2", book);
 
                 startActivity(intent);
+            }
+        });
+
+        finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ActivityCollector.finishAll();
+                android.os.Process.killProcess(android.os.Process.myPid());
             }
         });
 
