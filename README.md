@@ -17,3 +17,7 @@ Implement Serializable / Parcelable. Recommend: Parcelable, becasue Serializable
 
 Define a file: **HttpUtil.java**. Call functions when we need internet request, we can deal with success and failure condition.
 Tips: We need to add **Internet permission** in **AndroidManifest.xml**
+
+### Activity Collector
+
+Recording all activities and finishing all of them when exiting the app.
