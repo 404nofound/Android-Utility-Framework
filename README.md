@@ -21,3 +21,7 @@ Tips: We need to add **Internet permission** in **AndroidManifest.xml**
 ### Activity Collector
 
 Recording all activities and finishing all of them when exiting the app.
+
+### Best Way to Start Activity
+
+Define construction function for SecondActivity, call it in MianActivity. (Better for working / job).
