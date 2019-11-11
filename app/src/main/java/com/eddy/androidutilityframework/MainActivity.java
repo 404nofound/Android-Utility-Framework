@@ -77,6 +77,8 @@ public class MainActivity extends BaseActivity {
                 intent.putExtra("data2", book);
 
                 startActivity(intent);
+
+                //SecondActivity.actionStart(MainActivity.this, book);
             }
         });
 
